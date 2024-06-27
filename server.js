@@ -7,11 +7,12 @@ const orderRoutes = require("./routes/Order.route");
 const bodyParser = require("body-parser");
 const seedProducts = require("./Seedar");
 const seedUsers = require("./UserSeedar");
-
+require("dotenv").config(); // Ensure to load environment variables
+console.log("MongoDB URL:", process.env.MONGODB_URL);
 const PORT = process.env.PORT || 2100;
 const app = express();
 
-mongoose.connect("mongodb://localhost:27017");
+mongoose.connect(process.env.MONGODB_URL);
 
 mongoose.connection.on("connected", async () => {
   console.log("Connected to MongoDB");
